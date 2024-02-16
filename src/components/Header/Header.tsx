@@ -1,22 +1,34 @@
 import { FunctionComponent, useState } from 'react';
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup';
 
-const Header: FunctionComponent = () => {
-  
-  const items: string[] = ['€', '$', '¥'];
+import './Header.css';
+import currenciesTranslations from '../../utils/currenciesTranslations';
 
-  const [value, setValue] = useState<string | null>(items[0]);
+interface HeaderProps {
+  currency: string;
+  currencies: string[];
+  setCurrency: React.Dispatch<React.SetStateAction<string>>;
+}
 
+const Header: FunctionComponent<HeaderProps> = ({
+  currency,
+  currencies,
+  setCurrency,
+}) => {
   return (
     <div className="header">
-      <span>Text</span>
+      <span className="header__heading">
+        {`${currenciesTranslations[currency]}, ${currency}/₽`}
+      </span>
       <ChoiceGroup
-        value={value}
-        onChange={({ value }) => setValue(value)}
-        items={items}
+        value={currency}
+        size="xs"
+        onChange={({ value }) => setCurrency(value)}
+        items={currencies}
         getItemLabel={(item) => item}
         multiple={false}
         name={'Currencies'}
+        className="header__toggle"
       />
     </div>
   );
