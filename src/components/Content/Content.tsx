@@ -13,7 +13,6 @@ import getParsedData, { Data } from '../../utils/getData';
 
 import './Content.css';
 
-
 interface ContentProps {
   currency: string;
 }
@@ -97,7 +96,7 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
         return `${axisValue} год<br>
           <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#F38B00;"></span> 
           <span style="font-weight: normal">${currenciesTranslations[currency]}</span>&nbsp;
-          ${value}${currency}`;
+          ${value}₽`;
       },
     },
   };
