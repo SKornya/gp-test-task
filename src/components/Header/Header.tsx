@@ -19,12 +19,18 @@ const Header: FunctionComponent<HeaderProps> = ({
 }) => {
   return (
     <Card className="header" form="square" shadow={false}>
-      <Text className="header__heading" weight="bold" transform="uppercase">
+      <Text
+        className="header__heading"
+        weight="bold"
+        transform="uppercase"
+        size="xl"
+        style={{ paddingLeft: '5px' }}
+      >
         {`${currenciesTranslations[currency]}, ${currency}/₽`}
       </Text>
       <ChoiceGroup
         value={currency}
-        size="xs"
+        size="s"
         onChange={({ value }) => setCurrency(value)}
         items={currencies}
         getItemLabel={(item) => item}

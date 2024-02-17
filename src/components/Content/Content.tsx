@@ -9,16 +9,10 @@ import Average from '../Average/Average';
 
 import currenciesTranslations from '../../utils/currenciesTranslations';
 import getAverage from '../../utils/getAverage';
-import getParsedData from '../../utils/getData';
+import getParsedData, { Data } from '../../utils/getData';
 
 import './Content.css';
 
-interface Data {
-  date: string;
-  month: string;
-  indicator: string;
-  value: number;
-}
 
 interface ContentProps {
   currency: string;
@@ -41,6 +35,10 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
       axisTick: {
         show: false,
       },
+      axisLabel: {
+        color: '#002033',
+        opacity: 0.6,
+      },
     },
     yAxis: {
       type: 'value',
@@ -49,7 +47,8 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
         show: true,
         lineStyle: {
           type: 'dashed',
-          color: '#667985',
+          color: '#004166',
+          opacity: 0.2,
         },
       },
       splitNumber: 4,
@@ -60,6 +59,8 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
           }
           return value.toString();
         },
+        color: '#002033',
+        opacity: 0.6,
       },
     },
     series: {
@@ -74,7 +75,7 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
     },
     grid: {
       left: '5%',
-      right: '0',
+      right: '5%',
       top: '10%',
       bottom: '50px',
     },
