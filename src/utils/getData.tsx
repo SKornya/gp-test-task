@@ -1,6 +1,6 @@
 import currenciesTranslations from "./currenciesTranslations";
 
-interface Data {
+export interface Data {
   date: string;
   month: string;
   indicator: string;
@@ -9,6 +9,7 @@ interface Data {
 
 const API_URL = 'https://65cf8186bdb50d5e5f5b6fdb.mockapi.io/api/v1/data';
 
+// запрос данных с апи и парсинг по выбранной валюте
 const getParsedData = async (currency: string): Promise<Data[]> => {
   const getData = async (): Promise<Data[]> => {
     try {
@@ -20,9 +21,10 @@ const getParsedData = async (currency: string): Promise<Data[]> => {
   
       throw Error(`Error ${response.status}!`);
     } catch (e: unknown) {
-      console.log(e);
       if (e instanceof Error) {
-        console.log(e.message);
+        alert(e.message);
+      } else {
+        console.log(e);
       }
       return [];
     }
