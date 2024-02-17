@@ -28,3 +28,9 @@ body {
   padding: 8px;
   padding-bottom: 50px;
 }
+
+@media (max-width: 500px) {
+  #root {
+    height: 100%;
+  }
+}
