@@ -1,15 +1,17 @@
 import { FunctionComponent, useEffect, useState } from 'react';
 
-import Average from '../Average/Average';
-
 import { EChartsOption } from 'echarts';
 import { ReactECharts } from '../../Echarts/ReactECharts';
 
 import { Loader } from '@consta/uikit/Loader';
+
+import Average from '../Average/Average';
+
+import currenciesTranslations from '../../utils/currenciesTranslations';
+import getAverage from '../../utils/getAverage';
 import getParsedData from '../../utils/getData';
 
 import './Content.css';
-import currenciesTranslations from '../../utils/currenciesTranslations';
 
 interface Data {
   date: string;
@@ -18,8 +20,6 @@ interface Data {
   value: number;
 }
 
-const API_URL = 'https://65cf8186bdb50d5e5f5b6fdb.mockapi.io/api/v1/data';
-
 interface ContentProps {
   currency: string;
 }
@@ -27,9 +27,10 @@ interface ContentProps {
 const Content: FunctionComponent<ContentProps> = ({ currency }) => {
   // флаг для показа лоадера при загрузке данных
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [title, setTitle] = useState<string>('');
+  // храним данные для графика 
   const [data, setData] = useState<Data[]>([]);
 
+  // опции графика
   const options: EChartsOption = {
     xAxis: {
       data: data.map((item) => item.month),
@@ -43,12 +44,21 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
     },
     yAxis: {
       type: 'value',
-      min: 'dataMin',
+      scale: true,
       splitLine: {
         show: true,
         lineStyle: {
-          type: 'dashed',
-          color: '#667985',
+          type: 'dotted',
+          color: '#004166',
+        },
+      },
+      splitNumber: 4,
+      axisLabel: {
+        formatter: (value, index ) => {
+          if (index === 0) {
+            return '';
+          }
+          return value.toString();
         },
       },
     },
@@ -64,7 +74,7 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
     },
     grid: {
       left: '5%',
-      right: '3%',
+      right: '5%',
       bottom: '15%',
     },
     tooltip: {
@@ -80,7 +90,7 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
         fontWeight: 'bold',
       },
       formatter: (params): string => {
-        // @ts-ignore
+        // @ts-expect-error
         const { axisValue, value } = params[0];
         return `${axisValue} год<br>
         <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#F38B00;"></span> 
@@ -110,7 +120,10 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
       ) : (
         <div className="content">
           <ReactECharts option={options} />
-          <Average />
+          <Average 
+            currency={currency}
+            value={getAverage(data)}
+          />
         </div>
       )}
     </>
