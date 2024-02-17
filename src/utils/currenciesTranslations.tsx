@@ -1,3 +1,4 @@
+// маппинг символов в текст
 const currenciesTranslations: {
   [key: string]: string;
 } = {
