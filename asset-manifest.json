@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/gp-test-task/static/css/main.4c01cc7f.css",
-    "main.js": "/gp-test-task/static/js/main.234a2d8e.js",
+    "main.css": "/gp-test-task/static/css/main.5a1ad327.css",
+    "main.js": "/gp-test-task/static/js/main.8065e06e.js",
     "static/media/Inter-Bold.woff": "/gp-test-task/static/media/Inter-Bold.8f8c5ea1d3a580b04e28.woff",
     "static/media/Inter-SemiBold.woff": "/gp-test-task/static/media/Inter-SemiBold.8709b7f1f6fabaaa7896.woff",
     "static/media/Inter-ExtraBold.woff": "/gp-test-task/static/media/Inter-ExtraBold.589aaa938b49be935427.woff",
@@ -21,11 +21,11 @@
     "static/media/Inter-Thin.woff2": "/gp-test-task/static/media/Inter-Thin.f2bbf13ef416e260c1f9.woff2",
     "static/media/Inter-Regular.woff2": "/gp-test-task/static/media/Inter-Regular.91d1538224164e1fba3a.woff2",
     "index.html": "/gp-test-task/index.html",
-    "main.4c01cc7f.css.map": "/gp-test-task/static/css/main.4c01cc7f.css.map",
-    "main.234a2d8e.js.map": "/gp-test-task/static/js/main.234a2d8e.js.map"
+    "main.5a1ad327.css.map": "/gp-test-task/static/css/main.5a1ad327.css.map",
+    "main.8065e06e.js.map": "/gp-test-task/static/js/main.8065e06e.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c01cc7f.css",
-    "static/js/main.234a2d8e.js"
+    "static/css/main.5a1ad327.css",
+    "static/js/main.8065e06e.js"
   ]
 }
