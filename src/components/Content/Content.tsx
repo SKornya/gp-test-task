@@ -3,7 +3,7 @@ import { FunctionComponent, useEffect, useState } from 'react';
 import { EChartsOption } from 'echarts';
 import { ReactECharts } from '../../Echarts/ReactECharts';
 
-import { Loader } from '@consta/uikit/Loader';
+import { Card } from '@consta/uikit/Card';
 
 import Average from '../Average/Average';
 
@@ -12,7 +12,6 @@ import getAverage from '../../utils/getAverage';
 import getParsedData from '../../utils/getData';
 
 import './Content.css';
-import { Card } from '@consta/uikit/Card';
 
 interface Data {
   date: string;
@@ -26,10 +25,10 @@ interface ContentProps {
 }
 
 const Content: FunctionComponent<ContentProps> = ({ currency }) => {
-  // флаг для показа лоадера при загрузке данных
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   // храним данные для графика
   const [data, setData] = useState<Data[]>([]);
+  // стейт для среднего значения
+  const [avg, setAvg] = useState<number | null>(null);
 
   // опции графика
   const options: EChartsOption = {
@@ -49,8 +48,8 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
       splitLine: {
         show: true,
         lineStyle: {
-          type: 'dotted',
-          color: '#004166',
+          type: 'dashed',
+          color: '#667985',
         },
       },
       splitNumber: 4,
@@ -75,8 +74,9 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
     },
     grid: {
       left: '5%',
-      right: '5%',
-      bottom: '15%',
+      right: '0',
+      top: '10%',
+      bottom: '50px',
     },
     tooltip: {
       show: true,
@@ -94,9 +94,9 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
         // @ts-expect-error
         const { axisValue, value } = params[0];
         return `${axisValue} год<br>
-        <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#F38B00;"></span> 
-        <span style="font-weight: normal">${currenciesTranslations[currency]}</span>&nbsp;
-        ${value}${currency}`;
+          <span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:#F38B00;"></span> 
+          <span style="font-weight: normal">${currenciesTranslations[currency]}</span>&nbsp;
+          ${value}${currency}`;
       },
     },
   };
@@ -106,29 +106,28 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
   // и сохранение в состоянии компонента
 
   useEffect(() => {
-    setIsLoading(true);
     (async () => {
       const parsedData = await getParsedData(currency);
       setData(parsedData);
-      setIsLoading(false);
     })();
   }, [currency]);
 
+  // вычисляем среднее значение, кладем в стейт
+  // таким образом не будет так, что график отрисован, а значение еще не посчитано
+
+  useEffect(() => {
+    const average = getAverage(data);
+    setAvg(average);
+  }, [data]);
+
   return (
-    <>
-      {isLoading ? (
-        <Loader size="m" />
-      ) : (
-        <Card
-          className="content"
-          form='square'
-          shadow={false}
-        >
-          <ReactECharts option={options} />
-          <Average currency={currency} value={getAverage(data)} />
-        </Card>
-      )}
-    </>
+    <Card className="content" form="square" shadow={false}>
+      <ReactECharts
+        option={options}
+        style={{ width: '100%', height: '100%' }}
+      />
+      <Average value={avg} />
+    </Card>
   );
 };
 

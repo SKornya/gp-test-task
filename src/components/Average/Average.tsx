@@ -6,33 +6,35 @@ import { Text } from '@consta/uikit/Text';
 import './Average.css';
 
 interface AverageProps {
-  currency: string;
-  value: number;
+  value: number | null;
 }
 
-const Average: FunctionComponent<AverageProps> = ({ currency, value }) => {
-  // не отображаем данные до их расчета
+const Average: FunctionComponent<AverageProps> = ({ value }) => {
+  // отображаем после расчета
   return (
     <>
-      {!isNaN(value) ? (
-        <Card className="content__average" shadow={false} form="square">
+    {!value ? null : (<Card className="content__average" shadow={false} form="square">
+        <Text
+          className="content__average-heading"
+          align="center"
+          style={{ color: '#667985', marginBottom: '10px' }}
+        >
+          Среднее за период
+        </Text>        
+        <Text className="content__average-currency" align="center">
           <Text
-            className="content__average-heading"
-            align="center"
-            view="ghost"
+            className="value"
+            as="span"
+            size="4xl"
+            style={{ color: '#F38B00' }}
           >
-            Среднее за период
+            {value}&nbsp;
           </Text>
-          <Text className="content__average-currency" align="center">
-            <Text className="value" as="span" size="4xl" view="warning">
-              {value}&nbsp;
-            </Text>
-            <Text as="span" size="xl" view="ghost">
-              {currency}
-            </Text>
+          <Text as="span" size="xl" view="ghost" style={{ color: '#667985' }}>
+            ₽
           </Text>
-        </Card>
-      ) : null}
+        </Text>
+      </Card>)}
     </>
   );
 };
