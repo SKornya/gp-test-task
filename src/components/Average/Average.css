@@ -1,25 +1,4 @@
 .content__average {
   flex-shrink: 0;
-
-  color: #667985;
-  text-align: center;
-  
   margin-right: 20px;
-  min-width: 100px;
-}
-
-.content__average-heading {
-  font-size: 16px;
-  line-height: 20px;
-}
-
-.content__average-currency {
-  font-size: 20px;
-  line-height: 30px;
-}
-
-.content__average-currency .value {
-  font-size: 48px;
-  line-height: 72px;
-  color: #F38B00;
 }

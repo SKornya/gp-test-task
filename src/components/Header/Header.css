@@ -2,8 +2,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-.header__heading {
-  font-weight: bold;
-  font-size: 20px;
-}

@@ -1,5 +1,7 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent } from 'react';
 import { ChoiceGroup } from '@consta/uikit/ChoiceGroup';
+import { Card } from '@consta/uikit/Card';
+import { Text } from '@consta/uikit/Text';
 
 import './Header.css';
 import currenciesTranslations from '../../utils/currenciesTranslations';
@@ -16,10 +18,10 @@ const Header: FunctionComponent<HeaderProps> = ({
   setCurrency,
 }) => {
   return (
-    <div className="header">
-      <span className="header__heading">
+    <Card className="header" form="square" shadow={false}>
+      <Text className="header__heading" weight="bold" transform="uppercase">
         {`${currenciesTranslations[currency]}, ${currency}/₽`}
-      </span>
+      </Text>
       <ChoiceGroup
         value={currency}
         size="xs"
@@ -30,7 +32,7 @@ const Header: FunctionComponent<HeaderProps> = ({
         name={'Currencies'}
         className="header__toggle"
       />
-    </div>
+    </Card>
   );
 };
 

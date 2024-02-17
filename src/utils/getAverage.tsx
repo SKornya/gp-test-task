@@ -1,4 +1,4 @@
-import { Data } from "./getData";
+import { Data } from './getData';
 
 // расчет среднего значения
 const getAverage = (data: Data[]): number => {

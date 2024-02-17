@@ -12,6 +12,7 @@ import getAverage from '../../utils/getAverage';
 import getParsedData from '../../utils/getData';
 
 import './Content.css';
+import { Card } from '@consta/uikit/Card';
 
 interface Data {
   date: string;
@@ -27,7 +28,7 @@ interface ContentProps {
 const Content: FunctionComponent<ContentProps> = ({ currency }) => {
   // флаг для показа лоадера при загрузке данных
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // храним данные для графика 
+  // храним данные для графика
   const [data, setData] = useState<Data[]>([]);
 
   // опции графика
@@ -54,7 +55,7 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
       },
       splitNumber: 4,
       axisLabel: {
-        formatter: (value, index ) => {
+        formatter: (value, index) => {
           if (index === 0) {
             return '';
           }
@@ -118,13 +119,14 @@ const Content: FunctionComponent<ContentProps> = ({ currency }) => {
       {isLoading ? (
         <Loader size="m" />
       ) : (
-        <div className="content">
+        <Card
+          className="content"
+          form='square'
+          shadow={false}
+        >
           <ReactECharts option={options} />
-          <Average 
-            currency={currency}
-            value={getAverage(data)}
-          />
-        </div>
+          <Average currency={currency} value={getAverage(data)} />
+        </Card>
       )}
     </>
   );

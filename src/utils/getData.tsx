@@ -1,4 +1,4 @@
-import currenciesTranslations from "./currenciesTranslations";
+import currenciesTranslations from './currenciesTranslations';
 
 export interface Data {
   date: string;
@@ -14,11 +14,11 @@ const getParsedData = async (currency: string): Promise<Data[]> => {
   const getData = async (): Promise<Data[]> => {
     try {
       const response = await fetch(API_URL);
-  
+
       if (response.ok) {
         return response.json();
       }
-  
+
       throw Error(`Error ${response.status}!`);
     } catch (e: unknown) {
       if (e instanceof Error) {
@@ -32,7 +32,9 @@ const getParsedData = async (currency: string): Promise<Data[]> => {
 
   const apiData = await getData();
 
-  return apiData.filter((cur) => cur.indicator === currenciesTranslations[currency]);
+  return apiData.filter(
+    (cur) => cur.indicator === currenciesTranslations[currency]
+  );
 };
 
 export default getParsedData;

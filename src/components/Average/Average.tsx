@@ -1,4 +1,7 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent } from 'react';
+
+import { Card } from '@consta/uikit/Card';
+import { Text } from '@consta/uikit/Text';
 
 import './Average.css';
 
@@ -9,20 +12,29 @@ interface AverageProps {
 
 const Average: FunctionComponent<AverageProps> = ({ currency, value }) => {
   // не отображаем данные до их расчета
-  return (<>
-    {!isNaN(value)
-      ? (<div className="content__average">
-          <div className="content__average-heading">
-            <span>Среднее за период</span>
-          </div>
-          <div className="content__average-currency">
-            <span className="value">{value} </span>
-            <span>{currency}</span>
-          </div>
-        </div>)
-      : null
-    }
-  </>)
-}
+  return (
+    <>
+      {!isNaN(value) ? (
+        <Card className="content__average" shadow={false} form="square">
+          <Text
+            className="content__average-heading"
+            align="center"
+            view="ghost"
+          >
+            Среднее за период
+          </Text>
+          <Text className="content__average-currency" align="center">
+            <Text className="value" as="span" size="4xl" view="warning">
+              {value}&nbsp;
+            </Text>
+            <Text as="span" size="xl" view="ghost">
+              {currency}
+            </Text>
+          </Text>
+        </Card>
+      ) : null}
+    </>
+  );
+};
 
-export default Average
+export default Average;
