@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/gp-test-task/static/css/main.5a1ad327.css",
+    "main.css": "/gp-test-task/static/css/main.16382b48.css",
     "main.js": "/gp-test-task/static/js/main.a7e9d6cb.js",
     "static/media/Inter-Bold.woff": "/gp-test-task/static/media/Inter-Bold.8f8c5ea1d3a580b04e28.woff",
     "static/media/Inter-SemiBold.woff": "/gp-test-task/static/media/Inter-SemiBold.8709b7f1f6fabaaa7896.woff",
@@ -21,11 +21,11 @@
     "static/media/Inter-Thin.woff2": "/gp-test-task/static/media/Inter-Thin.f2bbf13ef416e260c1f9.woff2",
     "static/media/Inter-Regular.woff2": "/gp-test-task/static/media/Inter-Regular.91d1538224164e1fba3a.woff2",
     "index.html": "/gp-test-task/index.html",
-    "main.5a1ad327.css.map": "/gp-test-task/static/css/main.5a1ad327.css.map",
+    "main.16382b48.css.map": "/gp-test-task/static/css/main.16382b48.css.map",
     "main.a7e9d6cb.js.map": "/gp-test-task/static/js/main.a7e9d6cb.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a1ad327.css",
+    "static/css/main.16382b48.css",
     "static/js/main.a7e9d6cb.js"
   ]
 }
